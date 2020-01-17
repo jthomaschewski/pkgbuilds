@@ -1,0 +1,28 @@
+# Maintainer: Janek Thomaschewski <janek@thomaschewski.dev>
+
+pkgbase=jetbrains-mono
+pkgname=ttf-jetbrains-mono
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="A free and open source typeface for developers"
+arch=('any')
+url='https://github.com/JetBrains/JetBrainsMono'
+license=('Apache')
+depends=()
+source=("$pkgbase-$pkgver.tar.gz::https://download.jetbrains.com/fonts/JetBrainsMono-${pkgver}.zip")
+sha512sums=('7fd953f65951448bb358b3ade3b5be68b9994527781ee1059dc2e36e3b4042aa879472dadc37b13791c908238eb793bcfa06c4b3aedb4472943cd3852f512c30')
+
+package() {
+    local ext="ttf"
+    local fonts=(JetBrainsMono-*."$ext")
+    local installdir="${ext^^}"
+
+    # Prepare destination directory
+    install -dm755 "$pkgdir/usr/share/fonts/$installdir"
+
+    # Install fonts
+    local font
+    for font in "${fonts[@]}"; do
+        install -m644 "$font" "$pkgdir/usr/share/fonts/$installdir"
+    done
+}

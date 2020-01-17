@@ -1,0 +1,12 @@
+pkgbase = jetbrains-mono
+	pkgdesc = A free and open source typeface for developers
+	pkgver = 1.0.0
+	pkgrel = 1
+	url = https://github.com/JetBrains/JetBrainsMono
+	arch = any
+	license = Apache
+	source = jetbrains-mono-1.0.0.tar.gz::https://download.jetbrains.com/fonts/JetBrainsMono-1.0.0.zip
+	sha512sums = 7fd953f65951448bb358b3ade3b5be68b9994527781ee1059dc2e36e3b4042aa879472dadc37b13791c908238eb793bcfa06c4b3aedb4472943cd3852f512c30
+
+pkgname = ttf-jetbrains-mono
+
