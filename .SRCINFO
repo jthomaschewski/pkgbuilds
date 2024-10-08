@@ -17,8 +17,6 @@ pkgbase = amazon-workspaces-bin
 	depends = libva
 	options = staticlibs
 	source = amazon-workspaces-bin-4.7.0.4312.deb::https://d3nt0h4h6pmmc4.cloudfront.net/workspacesclient_focal_amd64.deb
-	source = amazon-workspaces-bin-4.7.0.4312.info::https://d3nt0h4h6pmmc4.cloudfront.net/ubuntu/dists/focal/main/binary-amd64/Packages
 	sha256sums = 1b4a39b859c49225169a44cc507955722770fb6c7c7bf2a631f54113ba0b5d5f
-	sha256sums = bc81602a1c975f9eccb59ab2d896c1d1b0674c32cb246fd4f0dfb9b4cc67852a
 
 pkgname = amazon-workspaces-bin

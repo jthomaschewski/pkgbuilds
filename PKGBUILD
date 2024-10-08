@@ -26,17 +26,11 @@ makedepends=(
 )
 source=(
     "$pkgname-$pkgver.deb::https://d3nt0h4h6pmmc4.cloudfront.net/workspacesclient_${_aptdist}_amd64.deb"
-    "$pkgname-$pkgver.info::https://d3nt0h4h6pmmc4.cloudfront.net/ubuntu/dists/${_aptdist}/main/binary-amd64/Packages"
 )
 
-sha256sums=('1b4a39b859c49225169a44cc507955722770fb6c7c7bf2a631f54113ba0b5d5f'
-            'bc81602a1c975f9eccb59ab2d896c1d1b0674c32cb246fd4f0dfb9b4cc67852a')
+sha256sums=('1b4a39b859c49225169a44cc507955722770fb6c7c7bf2a631f54113ba0b5d5f')
 
 prepare() {
-    # Verify the checksum
-    echo "$(grep SHA256 "$pkgname-$pkgver.info" | cut -d" " -f2) $pkgname-$pkgver.deb" >sum
-    sha256sum -c sum
-
     ar x "$pkgname-$pkgver.deb"
     tar axvf data.tar.xz
     tar axvf control.tar.xz
