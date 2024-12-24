@@ -2,7 +2,7 @@
 # Contributor: Steve Engledow <steve@engledow.me>
 
 pkgname=amazon-workspaces-bin
-pkgver=4.7.0.4312
+pkgver=2024.8.5130
 pkgrel=1
 _aptdist=focal
 pkgdesc='Amazon Workspace Client'
@@ -25,12 +25,16 @@ makedepends=(
   'tar'
 )
 source=(
-    "$pkgname-$pkgver.deb::https://d3nt0h4h6pmmc4.cloudfront.net/workspacesclient_${_aptdist}_amd64.deb"
+    "$pkgname-$pkgver.deb::https://d3nt0h4h6pmmc4.cloudfront.net/new_workspacesclient_${_aptdist}_amd64.deb"
     "$pkgname-$pkgver.info::https://d3nt0h4h6pmmc4.cloudfront.net/ubuntu/dists/${_aptdist}/main/binary-amd64/Packages"
+    lsb_release
+    workspacesclient-wrapper
 )
 
-sha256sums=('1b4a39b859c49225169a44cc507955722770fb6c7c7bf2a631f54113ba0b5d5f'
-            'bc81602a1c975f9eccb59ab2d896c1d1b0674c32cb246fd4f0dfb9b4cc67852a')
+sha256sums=('880157ef0361b696b34e5ad0957252bc3fd91b8b7a3b992623901fd3880120ca'
+            'b86729bff47a50f07005b6d3df8449bb594d07ef5fc07cb928b3982763bfb164'
+            'SKIP'
+            'SKIP')
 
 prepare() {
     # Verify the checksum
@@ -41,9 +45,13 @@ prepare() {
     tar axvf data.tar.xz
     tar axvf control.tar.xz
 
-    # Fix the .desktop entry
-    sed -i -e 's/\/opt\/workspacesclient/\/usr\/share\/amazon-workspaces/' $srcdir/usr/share/applications/workspacesclient.desktop
-    mv $srcdir/usr/share/applications/workspacesclient.desktop $srcdir/usr/share/applications/amazon-workspaces.desktop
+    # Put "fake" lsb_release into PATH to report Ubuntu 20.x
+    mkdir -p ${srcdir}/usr/lib/${arch}-linux-gnu/workspacesclient/helper-bin
+    install -m 0755 ${srcdir}/lsb_release ${srcdir}/usr/lib/${arch}-linux-gnu/workspacesclient/helper-bin/
+
+    install -m 0755 ${srcdir}/workspacesclient-wrapper ${srcdir}/usr/bin/
+
+    sed -i -e 's/Exec=workspacesclient/Exec=workspacesclient-wrapper/' ${srcdir}/usr/share/applications/com.amazon.workspacesclient.desktop
 }
 
 pkgver() {
@@ -51,15 +59,7 @@ pkgver() {
 }
 
 package() {
-  mkdir -p $pkgdir/usr/share/amazon-workspaces
-  mkdir -p $pkgdir/usr/bin
+  mkdir -p $pkgdir/usr
 
-  # Icons
-  cp -a $srcdir/usr/share/* $pkgdir/usr/share/
-
-  # Binary
-  cp -a $srcdir/opt/workspacesclient/* $pkgdir/usr/share/amazon-workspaces/
-
-  # Launcher
-  ln -s /usr/share/amazon-workspaces/workspacesclient $pkgdir/usr/bin/amazon-workspaces
+  cp -a $srcdir/usr/* $pkgdir/usr/
 }

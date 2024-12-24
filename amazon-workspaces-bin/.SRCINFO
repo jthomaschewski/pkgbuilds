@@ -1,6 +1,6 @@
 pkgbase = amazon-workspaces-bin
 	pkgdesc = Amazon Workspace Client
-	pkgver = 4.7.0.4312
+	pkgver = 2024.8.5130
 	pkgrel = 1
 	url = https://clients.amazonworkspaces.com/
 	arch = x86_64
@@ -16,9 +16,13 @@ pkgbase = amazon-workspaces-bin
 	depends = openssl-1.1
 	depends = libva
 	options = staticlibs
-	source = amazon-workspaces-bin-4.7.0.4312.deb::https://d3nt0h4h6pmmc4.cloudfront.net/workspacesclient_focal_amd64.deb
-	source = amazon-workspaces-bin-4.7.0.4312.info::https://d3nt0h4h6pmmc4.cloudfront.net/ubuntu/dists/focal/main/binary-amd64/Packages
-	sha256sums = 1b4a39b859c49225169a44cc507955722770fb6c7c7bf2a631f54113ba0b5d5f
-	sha256sums = bc81602a1c975f9eccb59ab2d896c1d1b0674c32cb246fd4f0dfb9b4cc67852a
+	source = amazon-workspaces-bin-2024.8.5130.deb::https://d3nt0h4h6pmmc4.cloudfront.net/new_workspacesclient_focal_amd64.deb
+	source = amazon-workspaces-bin-2024.8.5130.info::https://d3nt0h4h6pmmc4.cloudfront.net/ubuntu/dists/focal/main/binary-amd64/Packages
+	source = lsb_release
+	source = workspacesclient-wrapper
+	sha256sums = 880157ef0361b696b34e5ad0957252bc3fd91b8b7a3b992623901fd3880120ca
+	sha256sums = b86729bff47a50f07005b6d3df8449bb594d07ef5fc07cb928b3982763bfb164
+	sha256sums = SKIP
+	sha256sums = SKIP
 
 pkgname = amazon-workspaces-bin
