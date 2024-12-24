@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# "Fake" lsb_release script
+# This only exists so that "lsb_release -r" will return the below string
+# when placed in the $PATH
+
+if [ "$#" -ne 1 ] || [ "$1" != "-r" ] ; then
+    echo "Expected only '-r' argument"
+    exit 1
+fi
+
+echo "Release: 20.04"
