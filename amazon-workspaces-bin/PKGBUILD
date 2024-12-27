@@ -18,6 +18,8 @@ depends=(
     'hiredis0.14'
     'openssl-1.1'
     'libva'
+    'libvdpau'
+    'glib2'
 )
 options=('staticlibs')
 makedepends=(
@@ -52,6 +54,16 @@ prepare() {
     install -m 0755 ${srcdir}/workspacesclient-wrapper ${srcdir}/usr/bin/
 
     sed -i -e 's/Exec=workspacesclient/Exec=workspacesclient-wrapper/' ${srcdir}/usr/share/applications/com.amazon.workspacesclient.desktop
+
+    # Remove the vendored-in libgio-2.0.so.0, so the system one is used
+    # The vendored-in version has libselinux.so.1 linked, which doesn't exist natively on Arch
+    rm ${srcdir}/usr/lib/${arch}-linux-gnu/workspacesclient/dcv/libgio-2.0.so.0
+
+    # The below preparation steps are adapted from the .deb
+    export LD_LIBRARY_PATH=${srcdir}/usr/lib/${arch}-linux-gnu/workspacesclient/dcv:$LD_LIBRARY_PATH
+    export PATH=${srcdir}/usr/lib/${arch}-linux-gnu/workspacesclient/dcv:$PATH
+    gdk-pixbuf-query-loaders ${srcdir}/usr/lib/${arch}-linux-gnu/workspacesclient/dcv/gdk-pixbuf-2.0/2.10.0/loaders/*.so > ${srcdir}/usr/lib/${arch}-linux-gnu/workspacesclient/dcv/gdk-pixbuf-2.0/2.10.0/loaders.cache
+    gtk-query-immodules-3.0 ${srcdir}/usr/lib/${arch}-linux-gnu/workspacesclient/dcv/gtk-3.0/3.0.0/immodules/*.so > ${srcdir}/usr/lib/${arch}-linux-gnu/workspacesclient/dcv/gtk-3.0/3.0.0/immodules.cache
 }
 
 pkgver() {
