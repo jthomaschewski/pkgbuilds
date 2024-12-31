@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Put our fake lsb_release in the path
+# This is required for two reasons:
+# 1. lsb_release must exist in $PATH when the client runs (regardless of protocol)
+# 2. Use of PCOIP specifically confirms the OS is Ubuntu 20.04
+# Once Ubuntu 20.04 releases become end-of-life,
+# this could be substituted with a package dependency on lsb-release
+export PATH="/usr/lib/x86_64-linux-gnu/workspacesclient/helper-bin:${PATH}"
+
+# Work around "white box" issues in the startup dialog
+export WEBKIT_DISABLE_DMABUF_RENDERER=1
+
+exec workspacesclient "$@"
