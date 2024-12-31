@@ -62,8 +62,10 @@ prepare() {
     # The below preparation steps are adapted from the .deb
     export LD_LIBRARY_PATH=${srcdir}/usr/lib/${arch}-linux-gnu/workspacesclient/dcv:$LD_LIBRARY_PATH
     export PATH=${srcdir}/usr/lib/${arch}-linux-gnu/workspacesclient/dcv:$PATH
-    gdk-pixbuf-query-loaders ${srcdir}/usr/lib/${arch}-linux-gnu/workspacesclient/dcv/gdk-pixbuf-2.0/2.10.0/loaders/*.so > ${srcdir}/usr/lib/${arch}-linux-gnu/workspacesclient/dcv/gdk-pixbuf-2.0/2.10.0/loaders.cache
-    gtk-query-immodules-3.0 ${srcdir}/usr/lib/${arch}-linux-gnu/workspacesclient/dcv/gtk-3.0/3.0.0/immodules/*.so > ${srcdir}/usr/lib/${arch}-linux-gnu/workspacesclient/dcv/gtk-3.0/3.0.0/immodules.cache
+    gdk-pixbuf-query-loaders ${srcdir}/usr/lib/${arch}-linux-gnu/workspacesclient/dcv/gdk-pixbuf-2.0/2.10.0/loaders/*.so | \
+        sed "s|^\"${srcdir}|\"|" > ${srcdir}/usr/lib/${arch}-linux-gnu/workspacesclient/dcv/gdk-pixbuf-2.0/2.10.0/loaders.cache
+    gtk-query-immodules-3.0 ${srcdir}/usr/lib/${arch}-linux-gnu/workspacesclient/dcv/gtk-3.0/3.0.0/immodules/*.so | \
+        sed "s|^\"${srcdir}|\"|" > ${srcdir}/usr/lib/${arch}-linux-gnu/workspacesclient/dcv/gtk-3.0/3.0.0/immodules.cache
 }
 
 pkgver() {
