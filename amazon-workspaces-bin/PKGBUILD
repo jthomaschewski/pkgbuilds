@@ -3,7 +3,7 @@
 
 pkgname=amazon-workspaces-bin
 pkgver=2024.8.5130
-pkgrel=1
+pkgrel=2
 _aptdist=focal
 pkgdesc='Amazon Workspace Client'
 arch=('x86_64')
@@ -35,8 +35,8 @@ source=(
 
 sha256sums=('880157ef0361b696b34e5ad0957252bc3fd91b8b7a3b992623901fd3880120ca'
             'b86729bff47a50f07005b6d3df8449bb594d07ef5fc07cb928b3982763bfb164'
-            'SKIP'
-            'SKIP')
+            'fb7640c4d5dbb507d6443462eabf1384dd65f069b33a9abc4a599d41ac6d0fb6'
+            '27c7e51d9434e4cf85d898179ab1b0477b9c695e3461a7403da4e2c37857474f')
 
 prepare() {
     # Verify the checksum
