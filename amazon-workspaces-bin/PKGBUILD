@@ -3,7 +3,7 @@
 
 pkgname=amazon-workspaces-bin
 pkgver=2024.8.5130
-pkgrel=2
+pkgrel=3
 _aptdist=focal
 pkgdesc='Amazon Workspace Client'
 arch=('x86_64')
@@ -12,7 +12,7 @@ license=('non-free')
 depends=(
     'gtk3'
     'webkit2gtk'
-    'icu63'
+    'icu'
     'libsoup'
     'graphicsmagick'
     'hiredis0.14'
