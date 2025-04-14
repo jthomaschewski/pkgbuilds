@@ -1,7 +1,7 @@
 pkgbase = amazon-workspaces-bin
 	pkgdesc = Amazon Workspace Client
 	pkgver = 2024.8.5130
-	pkgrel = 2
+	pkgrel = 3
 	url = https://clients.amazonworkspaces.com/
 	arch = x86_64
 	license = non-free
@@ -9,7 +9,7 @@ pkgbase = amazon-workspaces-bin
 	makedepends = tar
 	depends = gtk3
 	depends = webkit2gtk
-	depends = icu63
+	depends = icu
 	depends = libsoup
 	depends = graphicsmagick
 	depends = hiredis0.14
